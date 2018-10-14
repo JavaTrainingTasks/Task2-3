@@ -1,5 +1,5 @@
 package ua.training;
 
-public enum InputDataTypes {
+public enum InputDataType {
 		NAME, SURNAME, PATRONYMIC, TELEPHONE, COMMENT, NICKNAME;
 }
