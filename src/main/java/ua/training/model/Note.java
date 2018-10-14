@@ -1,9 +1,11 @@
 package ua.training.model;
- /**
+
+/**
   *It is a note wich will get to notebook
   *
   **/
-public class Note {
+ public class Note {
+	private int id = 0;
 	private String surname;
 	private String name;
 	private String patronymic;
@@ -12,11 +14,35 @@ public class Note {
 	private String mobileTelephone;
 	private String email;
 
-	public void setSurname(String surname) {
+	public Note() {id++;}
+
+	public void setFildWithType(String input, InputDataType type) {
+		switch (type) {
+			case NAME:
+				setName(input);
+				break;
+			case SURNAME:
+				setSurname(input);
+				break;
+			case PATRONYMIC:
+				setPatronymic(input);
+				break;
+			case TELEPHONE:
+				setMobileTelephone(input);
+				break;
+			case COMMENT:
+				setComment(input);
+				break;
+			case NICKNAME:
+				setNickname(input);
+				break;
+		}
+	}
+	private void setSurname(String surname) {
 		this.surname = surname;
 	}
 
-	public void setName(String name) {
+	private void setName(String name) {
 		this.name = name;
 	}
 
@@ -67,4 +93,43 @@ public class Note {
 	public String getEmail() {
 		return email;
 	}
+
+	public int getId(){
+		return  id;
+	}
+
+	public String getFieldWithType(InputDataType type) {
+		String output = null;
+	switch (type) {
+		case NAME:
+			output = getName();
+			break;
+		case SURNAME:
+			output = getSurname();
+			break;
+		case PATRONYMIC:
+			output = getPatronymic();
+			break;
+		case TELEPHONE:
+			output = getMobileTelephone();
+			break;
+		case COMMENT:
+			output = getComment();
+			break;
+		case NICKNAME:
+			output = getNickname();
+			break;
+	}
+	return output;
+}
+	@Override
+	public String toString() {
+		String output = "";
+		for (InputDataType type: InputDataType.values()) {
+			output = output + type.toString().toLowerCase() + ":" + getFieldWithType(type) + "\n";
+		}
+		return output;
+	}
+
+
 }
