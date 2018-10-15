@@ -6,7 +6,9 @@ import ua.training.view.View;
 
 /**
  * Notebook
- *
+ * Give you opportunity to work with notes
+ * Created 15.10.18
+ * @author Yaroslav Kratt
  */
 public class App 
 {

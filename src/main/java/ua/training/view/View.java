@@ -1,5 +1,9 @@
 package ua.training.view;
-
+/**
+ * View stores and print all program messages
+ * Created 15.10.18
+ * @author or Yaroslav Kratt
+ */
 public class View {
 	public static final String INITIAL_MESSAGE = "Let`s make a note!";
 	public static final String INVALID_INPUT_MESSAGE = "Invalid input! Please check input for ";

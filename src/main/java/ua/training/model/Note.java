@@ -1,9 +1,11 @@
 package ua.training.model;
 
 /**
-  *It is a note wich will get to notebook
-  *
-  **/
+ * It is a component of {@linkplain ua.training.model.Notebook}
+ * Created 15.10.18
+ * @author or Yaroslav Kratt
+
+ */
  public class Note {
 	private int id = 0;
 	private String surname;
@@ -16,6 +18,11 @@ package ua.training.model;
 
 	public Note() {id++;}
 
+	/**
+	 * invoke necessary method due to type of input
+	 * @param input validated data from console
+	 * @param type type of the input data
+	 */
 	public void setFildWithType(String input, InputDataType type) {
 		switch (type) {
 			case NAME:
@@ -98,6 +105,11 @@ package ua.training.model;
 		return  id;
 	}
 
+	/**
+	 * get the definite field of note due to type of data
+	 * @param type data type
+	 * @return value of data type
+	 */
 	public String getFieldWithType(InputDataType type) {
 		String output = null;
 	switch (type) {
@@ -122,6 +134,11 @@ package ua.training.model;
 	}
 	return output;
 }
+
+	/**
+	 *
+	 * @return string with all fields of note
+	 */
 	@Override
 	public String toString() {
 		String output = "";

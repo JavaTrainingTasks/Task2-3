@@ -3,7 +3,7 @@ package ua.training.controllers;
 import java.util.regex.Pattern;
 
 /**
-* Regular exprassions lie here, Controller use them to validate input data
+* Regular exprassions for validation input data {@linkplain ua.training.controllers.Controller} use them to validate input data
 **/
 public  final class RegExp {
 	public static final String NAME = "^[\\p{L} .'-]+$";

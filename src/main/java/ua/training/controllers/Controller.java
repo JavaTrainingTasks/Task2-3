@@ -11,16 +11,26 @@ import java.util.regex.Pattern;
 
 /**
  * Controller check inputs, put, and get data from model, return data to view
+ * Created 15.10.18
+ * @author or Yaroslav Kratt
  */
 public class Controller {
 	private View view;
 	private Notebook notebook;
 
+	/**
+	 *
+	 * @param view this will print all of messages in programm
+	 * @param notebook here will be kept all of the notes
+	 */
 	public Controller(View view, Notebook notebook) {
 		this.view = view;
 		this.notebook = notebook;
 	}
 
+	/**
+	 * executes te program
+	 */
 	public void run() {
 		Scanner sc =new Scanner(System.in);
 	cyckle: while(true) {
@@ -40,12 +50,19 @@ public class Controller {
 			}
 		}
 		else {
-					break cyckle;
+			view.printMessage(View.WRONG_INPUT_MESSAGE);
+			break cyckle;
 				}
 		}
 		view.printMessage(notebook.toString());
 	}
 
+	/**
+	 *
+	 * @param sc scanner for getting input data from console
+	 * @return new note with validated data
+	 * @see #validate(String, InputDataType)
+	 */
 	private Note input(Scanner sc) {
 		Note note = new Note();
 		String input = "";
@@ -72,6 +89,12 @@ public class Controller {
 		return note;
 	}
 
+	/**
+	 *
+	 * @param input input for validating with regular expressions
+	 * @param type types of input data  from {@linkplain ua.training.model.InputDataType}
+	 * @return true if data is valid, adn false - if not
+	 */
 	private boolean validate(String input, InputDataType type) {
 		Pattern pattern = null;
 		Matcher matcher = null;
@@ -103,13 +126,6 @@ public class Controller {
 		return matcher.find();
 
 	}
-
-
-	void printNote(Note note) {
-		view.printMessage(View.NOTE_MESSAGE);
-		view.printMessage(note.toString());
-	}
-
 }
 
 
