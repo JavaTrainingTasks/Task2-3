@@ -20,6 +20,15 @@ public class Notebook {
 	public Note getNoteById(int id) {
 		return notebook.get(id);
 	}
+	//refact
+	public Note getNoteByNameAndSurname(String name, String surname) {
+		for (Note note:notebook) {
+			if(note.getName().equals(name) && note.getSurname().equals(surname)) {
+				return note;
+			}
+		}
+		return null;
+	}
 
 	/**
 	 *

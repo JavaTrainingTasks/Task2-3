@@ -44,13 +44,11 @@ public class Controller {
 				case 1:
 					continue;
 				default: {
-					view.printMessage(View.WRONG_INPUT_MESSAGE);
 					break cyckle;
 				}
 			}
 		}
 		else {
-			view.printMessage(View.WRONG_INPUT_MESSAGE);
 			break cyckle;
 				}
 		}
@@ -69,12 +67,13 @@ public class Controller {
 
 		view.printMessage(View.INITIAL_MESSAGE);
 		for (InputDataType type: InputDataType.values()) {
+			if(type != InputDataType.DATE)
 			view.printMessage(View.INPUT_DATA_MESSAGE, type.toString().toLowerCase());
 
 			while (sc.hasNextLine()){
 				input = sc.nextLine();
 
-				if( validate(input,type)) {
+				if( validate(input,type) ) {
 					note.setFildWithType(input,type);
 					break;
 				}
@@ -116,13 +115,19 @@ public class Controller {
 				pattern = Pattern.compile(RegExp.TELEPHONE);
 				matcher = pattern.matcher(input);
 				break;
-			case COMMENT:
-				return true;
+			case EMAIL:
+				pattern = Pattern.compile(RegExp.EMAIL);
+				matcher = pattern.matcher(input);
+				break;
+
 			case NICKNAME:
 				pattern = Pattern.compile(RegExp.NICKNAME);
 				matcher = pattern.matcher(input);
 				break;
+				default:
+			return true;
 		}
+
 		return matcher.find();
 
 	}

@@ -1,5 +1,7 @@
 package ua.training.model;
 
+import java.time.LocalDateTime;
+
 /**
  * It is a component of {@linkplain ua.training.model.Notebook}
  * Created 15.10.18
@@ -15,6 +17,8 @@ package ua.training.model;
 	private String comment;
 	private String mobileTelephone;
 	private String email;
+	private LocalDateTime date;
+
 
 	public Note() {id++;}
 
@@ -43,6 +47,11 @@ package ua.training.model;
 			case NICKNAME:
 				setNickname(input);
 				break;
+			case DATE:
+				setDate();
+				break;
+			case EMAIL:
+				setEmail(input);
 		}
 	}
 	private void setSurname(String surname) {
@@ -71,6 +80,10 @@ package ua.training.model;
 
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+
+	public void setDate(){
+		this.date = LocalDateTime.now();
 	}
 
 	public String getSurname() {
@@ -104,6 +117,12 @@ package ua.training.model;
 	public int getId(){
 		return  id;
 	}
+	private String getDate() {
+		return date.toLocalDate().toString();
+	}
+
+
+
 
 	/**
 	 * get the definite field of note due to type of data
@@ -128,12 +147,19 @@ package ua.training.model;
 		case COMMENT:
 			output = getComment();
 			break;
+		case DATE:
+			output = getDate();
+			break;
 		case NICKNAME:
 			output = getNickname();
+			break;
+		case EMAIL:
+			output = getEmail();
 			break;
 	}
 	return output;
 }
+
 
 	/**
 	 *
