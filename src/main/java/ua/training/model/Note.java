@@ -20,40 +20,11 @@ import java.time.LocalDateTime;
 	private LocalDateTime date;
 
 
-	public Note() {id++;}
-
-	/**
-	 * invoke necessary method due to type of input
-	 * @param input validated data from console
-	 * @param type type of the input data
-	 */
-	public void setFildWithType(String input, InputDataType type) {
-		switch (type) {
-			case NAME:
-				setName(input);
-				break;
-			case SURNAME:
-				setSurname(input);
-				break;
-			case PATRONYMIC:
-				setPatronymic(input);
-				break;
-			case TELEPHONE:
-				setMobileTelephone(input);
-				break;
-			case COMMENT:
-				setComment(input);
-				break;
-			case NICKNAME:
-				setNickname(input);
-				break;
-			case DATE:
-				setDate();
-				break;
-			case EMAIL:
-				setEmail(input);
-		}
+	public Note() {
+		id++;
+		setDate();
 	}
+
 	private void setSurname(String surname) {
 		this.surname = surname;
 	}
@@ -122,7 +93,39 @@ import java.time.LocalDateTime;
 	}
 
 
-
+	/**
+	 * invoke necessary method due to type of input
+	 * @param input validated data from console
+	 * @param type type of the input data
+	 */
+	public void setFildWithType(String input, InputDataType type)
+	{
+		switch (type) {
+			case NAME:
+				setName(input);
+				break;
+			case SURNAME:
+				setSurname(input);
+				break;
+			case PATRONYMIC:
+				setPatronymic(input);
+				break;
+			case TELEPHONE:
+				setMobileTelephone(input);
+				break;
+			case COMMENT:
+				setComment(input);
+				break;
+			case NICKNAME:
+				setNickname(input);
+				break;
+			case DATE:
+				setDate();
+				break;
+			case EMAIL:
+				setEmail(input);
+		}
+	}
 
 	/**
 	 * get the definite field of note due to type of data
