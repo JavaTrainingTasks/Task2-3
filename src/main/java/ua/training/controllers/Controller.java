@@ -40,11 +40,12 @@ public class Controller {
 		NoteInput noteInput = new NoteInput(sc, view);
 
 		cyckle: while (true) {
-			noteInput.inputNote();
+			notebook.addNote(noteInput.createNote());
 			Scanner sc1 = new Scanner(System.in);
 			view.printMessage(View.ONE_MORE_NOTE_MESSAGE);
 			if (sc1.hasNextInt()) {
 				int input = sc1.nextInt();
+
 				switch (input) {
 					case 1:
 						continue;
@@ -58,20 +59,8 @@ public class Controller {
 
 	 }
 
-	/**
-	 * @param sc scanner for getting input data from console
-	 * @return new note with validated data
-	 * @see #validate(String, InputDataType)
-	 */
-	private Note input(Scanner sc) {
 
-	}
 
-	/**
-	 * @param input input for validating with regular expressions
-	 * @param type  types of input data  from {@linkplain ua.training.model.InputDataType}
-	 * @return true if data is valid, adn false - if not
-	 */
 
 }
 

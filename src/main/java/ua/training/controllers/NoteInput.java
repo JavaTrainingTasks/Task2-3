@@ -38,6 +38,7 @@ public class NoteInput {
 
    private String inputNote(InputDataType type) {
         String input = "";
+        view.printMessage(View.INPUT_DATA_MESSAGE,type.toString());
             while (sc.hasNextLine()) {
                 input = sc.nextLine();
 
@@ -50,6 +51,15 @@ public class NoteInput {
             }
             return input;
     }
+
+
+
+    /**
+     * @param input input for validating with regular expressions
+     * @param type  types of input data  from {@linkplain ua.training.model.InputDataType}
+     * @return true if data is valid, adn false - if not
+     */
+
     private boolean validate(String input, InputDataType type) {
         Pattern pattern = null;
         Matcher matcher = null;

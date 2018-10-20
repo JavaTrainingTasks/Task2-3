@@ -19,12 +19,6 @@ import java.time.LocalDateTime;
 	private String email;
 	private LocalDateTime date;
 
-
-	public Note() {
-		id++;
-		setDate();
-	}
-
 	public Note(String name, String surname, String patronymic, String nickname, String comment, String mobileTelephone, String email) {
 		this.name = name;
 		this.surname = surname;
@@ -33,6 +27,8 @@ import java.time.LocalDateTime;
 		this.comment = comment;
 		this.mobileTelephone = mobileTelephone;
 		this.email = email;
+		id++;
+		setDate();
 	}
 
 	public void setDate(){
