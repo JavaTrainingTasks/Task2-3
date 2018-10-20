@@ -20,6 +20,7 @@ public class Notebook {
 	public Note getNoteById(int id) {
 		return notebook.get(id);
 	}
+
 	//refact
 	public Note getNoteByNameAndSurname(String name, String surname) {
 		for (Note note:notebook) {

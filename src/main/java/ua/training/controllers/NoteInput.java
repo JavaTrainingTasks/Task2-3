@@ -22,13 +22,13 @@ public class NoteInput {
     public Note createNote() {
         NoteBuilder builder = new NoteBuilder();
 
-        builder.setName(inputNote(InputDataType.NAME))
-                .setSurname(inputNote(InputDataType.SURNAME))
-                .setPatronymic(inputNote(InputDataType.PATRONYMIC))
-                .setNickname(inputNote(InputDataType.NICKNAME))
-                .setMobileTelephone(inputNote(InputDataType.TELEPHONE))
-                .setEmail(inputNote(InputDataType.EMAIL))
-                .setComment(inputNote(InputDataType.COMMENT));
+        builder.setName(inputNote(InputDataType.NAME, RegExp.NAME))
+                .setSurname(inputNote(InputDataType.SURNAME, RegExp.NAME))
+                .setPatronymic(inputNote(InputDataType.PATRONYMIC, RegExp.NAME))
+                .setNickname(inputNote(InputDataType.NICKNAME, RegExp.NICKNAME))
+                .setMobileTelephone(inputNote(InputDataType.TELEPHONE, RegExp.TELEPHONE))
+                .setEmail(inputNote(InputDataType.EMAIL, RegExp.EMAIL))
+                .setComment(inputNote(InputDataType.COMMENT,""));
         note = builder.buildNote();
         return  note;
 
@@ -36,13 +36,13 @@ public class NoteInput {
 
 
 
-   private String inputNote(InputDataType type) {
+   private String inputNote(InputDataType type, String regexp) {
         String input = "";
         view.printMessage(View.INPUT_DATA_MESSAGE,type.toString());
             while (sc.hasNextLine()) {
                 input = sc.nextLine();
 
-                if (validate(input, type)) {
+                if (validate(input, regexp)) {
                     return input;
                 } else {
                     view.printMessage(View.INVALID_INPUT_MESSAGE, type.toString());
@@ -56,44 +56,11 @@ public class NoteInput {
 
     /**
      * @param input input for validating with regular expressions
-     * @param type  types of input data  from {@linkplain ua.training.model.InputDataType}
      * @return true if data is valid, adn false - if not
      */
-
-    private boolean validate(String input, InputDataType type) {
-        Pattern pattern = null;
-        Matcher matcher = null;
-
-        switch (type) {
-            case NAME:
-                pattern = Pattern.compile(RegExp.NAME);
-                matcher = pattern.matcher(input);
-                break;
-            case SURNAME:
-                pattern = Pattern.compile(RegExp.NAME);
-                matcher = pattern.matcher(input);
-                break;
-            case PATRONYMIC:
-                pattern = Pattern.compile(RegExp.NAME);
-                matcher = pattern.matcher(input);
-                break;
-            case TELEPHONE:
-                pattern = Pattern.compile(RegExp.TELEPHONE);
-                matcher = pattern.matcher(input);
-                break;
-            case EMAIL:
-                pattern = Pattern.compile(RegExp.EMAIL);
-                matcher = pattern.matcher(input);
-                break;
-
-            case NICKNAME:
-                pattern = Pattern.compile(RegExp.NICKNAME);
-                matcher = pattern.matcher(input);
-                break;
-            default:
-                return true;
-        }
-
+    private boolean validate(String input,  String regexp) {
+        Pattern pattern = Pattern.compile(regexp);
+        Matcher matcher = pattern.matcher(input);
         return matcher.find();
 
     }
