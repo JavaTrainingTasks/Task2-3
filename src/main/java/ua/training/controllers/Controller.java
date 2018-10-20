@@ -5,7 +5,6 @@ import ua.training.model.Note;
 import ua.training.model.Notebook;
 import ua.training.view.View;
 
-import java.util.Date;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -34,27 +33,30 @@ public class Controller {
 	 */
 	public void run() {
 		Scanner sc = new Scanner(System.in);
-		cyckle:
-		while (true) {
-			Scanner sc1 = new Scanner(System.in);
+		addNotes(sc);
+	}
 
-			notebook.addNote(input(sc));
+	 void addNotes(Scanner sc) {
+		NoteInput noteInput = new NoteInput(sc, view);
+
+		cyckle: while (true) {
+			noteInput.inputNote();
+			Scanner sc1 = new Scanner(System.in);
 			view.printMessage(View.ONE_MORE_NOTE_MESSAGE);
 			if (sc1.hasNextInt()) {
 				int input = sc1.nextInt();
 				switch (input) {
 					case 1:
 						continue;
-					default: {
-						break cyckle;
 					}
 				}
-			} else {
+			 else {
 				break cyckle;
 			}
 		}
-		view.printMessage(notebook.toString());
-	}
+		 view.printMessage(notebook.toString());
+
+	 }
 
 	/**
 	 * @param sc scanner for getting input data from console
@@ -62,31 +64,7 @@ public class Controller {
 	 * @see #validate(String, InputDataType)
 	 */
 	private Note input(Scanner sc) {
-		Note note = new Note();
-		String input = "";
 
-		view.printMessage(View.INITIAL_MESSAGE);
-		for (InputDataType type : InputDataType.values()) {
-			if (type == InputDataType.DATE) {
-				continue;
-			}
-			view.printMessage(View.INPUT_DATA_MESSAGE, type.toString().toLowerCase());
-
-			while (sc.hasNextLine()) {
-				input = sc.nextLine();
-
-				if (validate(input, type)) {
-					note.setFildWithType(input, type);
-					break;
-				} else {
-					view.printMessage(View.INVALID_INPUT_MESSAGE, type.toString().toLowerCase());
-					continue;
-				}
-			}
-
-
-		}
-		return note;
 	}
 
 	/**
@@ -94,43 +72,7 @@ public class Controller {
 	 * @param type  types of input data  from {@linkplain ua.training.model.InputDataType}
 	 * @return true if data is valid, adn false - if not
 	 */
-	private boolean validate(String input, InputDataType type) {
-		Pattern pattern = null;
-		Matcher matcher = null;
 
-		switch (type) {
-			case NAME:
-				pattern = Pattern.compile(RegExp.NAME);
-				matcher = pattern.matcher(input);
-				break;
-			case SURNAME:
-				pattern = Pattern.compile(RegExp.NAME);
-				matcher = pattern.matcher(input);
-				break;
-			case PATRONYMIC:
-				pattern = Pattern.compile(RegExp.NAME);
-				matcher = pattern.matcher(input);
-				break;
-			case TELEPHONE:
-				pattern = Pattern.compile(RegExp.TELEPHONE);
-				matcher = pattern.matcher(input);
-				break;
-			case EMAIL:
-				pattern = Pattern.compile(RegExp.EMAIL);
-				matcher = pattern.matcher(input);
-				break;
-
-			case NICKNAME:
-				pattern = Pattern.compile(RegExp.NICKNAME);
-				matcher = pattern.matcher(input);
-				break;
-			default:
-				return true;
-		}
-
-		return matcher.find();
-
-	}
 }
 
 

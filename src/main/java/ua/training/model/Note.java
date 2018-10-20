@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
  */
  public class Note {
-	private int id = 0;
+	private  static int id;
 	private String surname;
 	private String name;
 	private String patronymic;
@@ -25,32 +25,14 @@ import java.time.LocalDateTime;
 		setDate();
 	}
 
-	private void setSurname(String surname) {
-		this.surname = surname;
-	}
-
-	private void setName(String name) {
+	public Note(String name, String surname, String patronymic, String nickname, String comment, String mobileTelephone, String email) {
 		this.name = name;
-	}
-
-	public void setPatronymic(String patronymic) {
+		this.surname = surname;
 		this.patronymic = patronymic;
-	}
-
-	public void setNickname(String nickname) {
 		this.nickname = nickname;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public void setMobileTelephone(String mobileTelephone) {
-		this.mobileTelephone = mobileTelephone;
-	}
-
-	public void setComment(String comment) {
 		this.comment = comment;
+		this.mobileTelephone = mobileTelephone;
+		this.email = email;
 	}
 
 	public void setDate(){
@@ -98,34 +80,7 @@ import java.time.LocalDateTime;
 	 * @param input validated data from console
 	 * @param type type of the input data
 	 */
-	public void setFildWithType(String input, InputDataType type)
-	{
-		switch (type) {
-			case NAME:
-				setName(input);
-				break;
-			case SURNAME:
-				setSurname(input);
-				break;
-			case PATRONYMIC:
-				setPatronymic(input);
-				break;
-			case TELEPHONE:
-				setMobileTelephone(input);
-				break;
-			case COMMENT:
-				setComment(input);
-				break;
-			case NICKNAME:
-				setNickname(input);
-				break;
-			case DATE:
-				setDate();
-				break;
-			case EMAIL:
-				setEmail(input);
-		}
-	}
+
 
 	/**
 	 * get the definite field of note due to type of data
