@@ -1,7 +1,7 @@
 package ua.training.controllers;
 
 import ua.training.model.InputDataType;
-import ua.training.model.Note;
+import ua.training.model.entity.Note;
 import ua.training.view.View;
 
 import java.util.Scanner;

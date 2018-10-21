@@ -1,13 +1,11 @@
 package ua.training.controllers;
 
-import ua.training.model.InputDataType;
-import ua.training.model.Note;
-import ua.training.model.Notebook;
+import ua.training.model.db.DBUtil;
+import ua.training.model.db.NoteService;
+import ua.training.model.entity.Notebook;
 import ua.training.view.View;
 
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Controller check inputs, put, and get data from model, return data to view
@@ -33,14 +31,15 @@ public class Controller {
 	 */
 	public void run() {
 		Scanner sc = new Scanner(System.in);
+		DBUtil.getConnection();
 		addNotes(sc);
 	}
 
 	 void addNotes(Scanner sc) {
 		NoteInput noteInput = new NoteInput(sc, view);
-
+		 NoteService ns = new NoteService();
 		cyckle: while (true) {
-			notebook.addNote(noteInput.createNote());
+			 ns.addNote(noteInput.createNote());
 			Scanner sc1 = new Scanner(System.in);
 			view.printMessage(View.ONE_MORE_NOTE_MESSAGE);
 			if (sc1.hasNextInt()) {

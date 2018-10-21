@@ -1,7 +1,7 @@
 package ua.training;
 
 import ua.training.controllers.Controller;
-import ua.training.model.Notebook;
+import ua.training.model.entity.Notebook;
 import ua.training.view.View;
 
 /**

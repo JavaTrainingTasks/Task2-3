@@ -1,6 +1,6 @@
 package ua.training.controllers;
 
-import ua.training.model.Note;
+import ua.training.model.entity.Note;
 
 
 public class NoteBuilder {

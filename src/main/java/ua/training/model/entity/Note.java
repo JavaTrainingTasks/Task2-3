@@ -1,9 +1,11 @@
-package ua.training.model;
+package ua.training.model.entity;
+
+import ua.training.model.InputDataType;
 
 import java.time.LocalDateTime;
 
 /**
- * It is a component of {@linkplain ua.training.model.Notebook}
+ * It is a component of {@linkplain Notebook}
  * Created 15.10.18
  * @author or Yaroslav Kratt
 
@@ -66,7 +68,7 @@ import java.time.LocalDateTime;
 	public int getId(){
 		return  id;
 	}
-	private String getDate() {
+	public String getDate() {
 		return date.toLocalDate().toString();
 	}
 

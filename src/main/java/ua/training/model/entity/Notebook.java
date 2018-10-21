@@ -1,9 +1,9 @@
-package ua.training.model;
+package ua.training.model.entity;
 
 import java.util.ArrayList;
 
 /**
- * Consist of  objects of {@linkplain ua.training.model.Note}.
+ * Consist of  objects of {@linkplain Note}.
  * You can add, delete and print notes
  * Created 15.10.18
  * @author or Yaroslav Kratt
