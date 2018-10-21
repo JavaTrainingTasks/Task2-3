@@ -11,8 +11,9 @@ public class View {
 	public static final String NOTE_MESSAGE = "The note is: n";
 	public static final String ONE_MORE_NOTE_MESSAGE = "One more note? \n print '1' if yes and anything else if not";
 	public static final String WRONG_INPUT_MESSAGE = "Wrong input! Enough for now.";
+    public static final String NICK_NAME_EXIST_MASSAGE = "Nick name already exist";
 
-	public  void printMessage(String ...message) {
+    public  void printMessage(String ...message) {
 		String fullMessage = "";
 		for (String el:message) {
 			fullMessage = fullMessage.concat(el+ " ");

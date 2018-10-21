@@ -1,6 +1,8 @@
 package ua.training.controllers;
 
-import ua.training.model.InputDataType;
+import ua.training.model.DataType;
+import ua.training.model.NickNameExistException;
+import ua.training.model.db.NoteService;
 import ua.training.model.entity.Note;
 import ua.training.view.View;
 
@@ -19,16 +21,24 @@ public class NoteInput {
         this.view = view;
     }
 
-    public Note createNote() {
+    public Note createNote(NoteService noteService) throws NickNameExistException {
         NoteBuilder builder = new NoteBuilder();
+        String nickname ="";
 
-        builder.setName(inputNote(InputDataType.NAME, RegExp.NAME))
-                .setSurname(inputNote(InputDataType.SURNAME, RegExp.NAME))
-                .setPatronymic(inputNote(InputDataType.PATRONYMIC, RegExp.NAME))
-                .setNickname(inputNote(InputDataType.NICKNAME, RegExp.NICKNAME))
-                .setMobileTelephone(inputNote(InputDataType.TELEPHONE, RegExp.TELEPHONE))
-                .setEmail(inputNote(InputDataType.EMAIL, RegExp.EMAIL))
-                .setComment(inputNote(InputDataType.COMMENT,""));
+        builder.setName(inputNote(DataType.NAME, RegExp.NAME))
+                .setSurname(inputNote(DataType.SURNAME, RegExp.NAME))
+                .setPatronymic(inputNote(DataType.PATRONYMIC, RegExp.NAME))
+                .setMobileTelephone(inputNote(DataType.TELEPHONE, RegExp.TELEPHONE))
+                .setEmail(inputNote(DataType.EMAIL, RegExp.EMAIL))
+                .setComment(inputNote(DataType.COMMENT,""));
+        nickname =  inputNote(DataType.NICKNAME, RegExp.NICKNAME);
+
+        if(noteService.getByNickName(nickname)!= null) {
+            throw new NickNameExistException();
+        }
+        else {
+            builder.setNickname(nickname);
+        }
         note = builder.buildNote();
         return  note;
 
@@ -36,7 +46,7 @@ public class NoteInput {
 
 
 
-   private String inputNote(InputDataType type, String regexp) {
+   private String inputNote(DataType type, String regexp) {
         String input = "";
         view.printMessage(View.INPUT_DATA_MESSAGE,type.toString());
             while (sc.hasNextLine()) {

@@ -13,4 +13,5 @@ public interface NoteDAO {
     Note getById(Long id);
 
 
+    Note getByNickName(String nickname);
 }

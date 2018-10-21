@@ -1,6 +1,6 @@
 package ua.training.model.entity;
 
-import ua.training.model.InputDataType;
+import ua.training.model.DataType;
 
 import java.time.LocalDateTime;
 
@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 	private String comment;
 	private String mobileTelephone;
 	private String email;
-	private LocalDateTime date;
+	private String date;
 
 	public Note(String name, String surname, String patronymic, String nickname, String comment, String mobileTelephone, String email) {
 		this.name = name;
@@ -30,11 +30,50 @@ import java.time.LocalDateTime;
 		this.mobileTelephone = mobileTelephone;
 		this.email = email;
 		id++;
-		setDate();
+		 setDateNow();
+	}
+	public Note(){}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
-	public void setDate(){
-		this.date = LocalDateTime.now();
+	public void setPatronymic(String patronymic) {
+		this.patronymic = patronymic;
+	}
+
+	public void setMobileTelephone(String mobileTelephone) {
+		this.mobileTelephone = mobileTelephone;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public static void setId(int id) {
+		Note.id = id;
+	}
+
+
+	public void setDateNow(){
+	    this.date = LocalDateTime.now().toString();
+
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 	public String getSurname() {
@@ -69,7 +108,7 @@ import java.time.LocalDateTime;
 		return  id;
 	}
 	public String getDate() {
-		return date.toLocalDate().toString();
+		return this.date;
 	}
 
 
@@ -85,7 +124,7 @@ import java.time.LocalDateTime;
 	 * @param type data type
 	 * @return value of data type
 	 */
-	public String getFieldWithType(InputDataType type) {
+	public String getFieldWithType(DataType type) {
 		String output = null;
 	switch (type) {
 		case NAME:
@@ -112,6 +151,8 @@ import java.time.LocalDateTime;
 		case EMAIL:
 			output = getEmail();
 			break;
+        case ID:
+            output = String.valueOf(getId());
 	}
 	return output;
 }
@@ -124,7 +165,7 @@ import java.time.LocalDateTime;
 	@Override
 	public String toString() {
 		String output = "";
-		for (InputDataType type: InputDataType.values()) {
+		for (DataType type: DataType.values()) {
 			output = output + type.toString().toLowerCase() + ":" + getFieldWithType(type) + "\n";
 		}
 		return output;

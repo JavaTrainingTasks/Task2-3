@@ -1,5 +1,6 @@
 package ua.training.controllers;
 
+import ua.training.model.NickNameExistException;
 import ua.training.model.db.DBUtil;
 import ua.training.model.db.NoteService;
 import ua.training.model.entity.Notebook;
@@ -39,7 +40,15 @@ public class Controller {
 		NoteInput noteInput = new NoteInput(sc, view);
 		 NoteService ns = new NoteService();
 		cyckle: while (true) {
-			 ns.addNote(noteInput.createNote());
+
+		 	try {
+		 		ns.addNote(noteInput.createNote(ns));
+		 	}
+		 	catch (NickNameExistException e) {
+		 		view.printMessage(View.NICK_NAME_EXIST_MASSAGE);
+		 		e.printStackTrace();
+		 		continue cyckle;
+			}
 			Scanner sc1 = new Scanner(System.in);
 			view.printMessage(View.ONE_MORE_NOTE_MESSAGE);
 			if (sc1.hasNextInt()) {
